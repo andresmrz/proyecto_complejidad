@@ -1,0 +1,4 @@
+Flask==2.2.2
+matplotlib==3.5.3
+minizinc==0.5.0
+numpy==1.23.1
