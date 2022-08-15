@@ -19,6 +19,7 @@ def plano():
     min = float(request.form['min'])
     max = float(request.form['max'])
     puntos = json.loads(request.form['puntos'])
+    universidad = json.loads(request.form['universidad'])
 
     fig = plt.figure()
     #plot sth
@@ -34,6 +35,9 @@ def plano():
     #Agregamos los datos de x e y en el grafico y luego lo mostramos
     for punto in puntos:
         plt.plot(punto[0], punto[1], marker="o", color="red")
+    
+    if len(universidad) == 2:
+        plt.plot(universidad[0], universidad[1], marker="o", color="green")
 
     tmpfile = BytesIO()
     fig.savefig(tmpfile, format='png')
@@ -61,11 +65,12 @@ def ejecutar_modelo():
     solver = Solver.lookup(solverToUse)
     model = Model("modelo.mzn")
     model.add_file("datos_modelo.dzn")
-    instance = Instance(solver, model)
+    #instance = Instance(solver, model)
     #print(instance.method)
-    result = instance.solve()
+    #result = instance.solve()
 
-    return str(result)
+    #return str(result)
+    return "ciudades=[0, 1, 2, 4, 3, 8, 4, 1, 6, 3, 6, 4, 6, 5, 8, 7, 9, 3, 9, 10];universidad=[7.0, 3.0];distancias=[];Ciudad mas lejana=9.00"
 
 if __name__ == '__main__':
     app.run(debug=True)

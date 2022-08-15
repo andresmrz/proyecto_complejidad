@@ -1,5 +1,6 @@
 
-var lista_municipios = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'];
+var lista_municipios = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+                        , 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'];
 
 function insertar_fila(id)
 {
@@ -33,7 +34,7 @@ function eliminar_fila(id)
     actualizar_plano('datos-tabla');
 }
 
-function actualizar_plano(id)
+function actualizar_plano(id, universidad = [])
 {
     var datosTabla = document.querySelectorAll('#' + id + ' tbody tr');
 
@@ -74,7 +75,8 @@ function actualizar_plano(id)
         {
             min: min,
             max: max,
-            puntos: JSON.stringify(puntos)
+            puntos: JSON.stringify(puntos),
+            universidad: JSON.stringify(universidad)
         };
 
         $.ajax(
@@ -303,7 +305,21 @@ function crear_file_modelo(id)
                     data: parametros,
                     success: function(respuesta)
                     {
-                        add_text_console('Result: ' + respuesta);
+                        var datos_respuesta = respuesta.split(';');
+                        var mensaje = '';
+
+                        for(var i = 0; i < datos_respuesta.length; i++)
+                        {
+                            mensaje += '* ' + datos_respuesta[i] + '</br>';
+
+                            if(i == 1)
+                            {
+                                var datos_universidad = datos_respuesta[i].split('=');
+                                actualizar_plano('datos-tabla', eval(datos_universidad[1]));
+                            }
+                        }
+
+                        add_text_console('Result: <br>' + mensaje);
                     }
                 });
             }
