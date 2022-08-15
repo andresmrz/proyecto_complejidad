@@ -34,6 +34,22 @@ function eliminar_fila(id)
     actualizar_plano('datos-tabla');
 }
 
+function limpiar_todo(id)
+{
+    var datosTabla = document.querySelectorAll('#' + id + ' tbody tr');
+
+    if(datosTabla.length > 0)
+    {
+        for(var i = 0;i < datosTabla.length;i++)
+        {
+            var fila = datosTabla[i];
+            fila.remove();
+        }
+
+        ocultar('plano');        
+    }
+}
+
 function actualizar_plano(id, universidad = [])
 {
     var datosTabla = document.querySelectorAll('#' + id + ' tbody tr');

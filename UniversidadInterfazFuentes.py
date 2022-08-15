@@ -65,15 +65,15 @@ def ejecutar_modelo():
     inicio = time.time()
     solverToUse = "gecode"
     solver = Solver.lookup(solverToUse)
-    model = Model("modelo.mzn")
+    model = Model("Universidad.mzn")
     model.add_file("datos_modelo.dzn")
     instance = Instance(solver, model)
     #print(instance.method)
     result = instance.solve()
     fin = time.time()
 
-    return str(result) + ";" + str(fin - inicio)
-    #return "ciudades=[0, 1, 2, 4, 3, 8, 4, 1, 6, 3, 6, 4, 6, 5, 8, 7, 9, 3, 9, 10];universidad=[7.0, 3.0];distancias=[];Ciudad mas lejana=9.00" + ";Tiempo de ejecución=" + str(fin - inicio) + " s"
+    return str(result) + ";" + str(fin - inicio) + " segundos"
+    #return "ciudades=[0, 1, 2, 4, 3, 8, 4, 1, 6, 3, 6, 4, 6, 5, 8, 7, 9, 3, 9, 10];universidad=[7.0, 3.0];distancias=[];Ciudad mas lejana=9.00" + ";Tiempo de ejecución=" + str(fin - inicio) + " segundos"
 
 if __name__ == '__main__':
     app.run(debug=True)

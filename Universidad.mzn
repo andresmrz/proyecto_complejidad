@@ -36,5 +36,5 @@ solve minimize lejana;
 %------------------------------Output----------------------------------------------
 %----------------------------------------------------------------------------------
 output["ciudades=\(ciudades);universidad=[\(universidad[1] / 100), \(universidad[2] / 100)];distancias=["]++
-%[show_float(0,2,distancias[i]/100) ++ if i=m then "" else ", " endif | i in rangoCiudades]++
+[show_float(0,2,distancias[i]/100) ++ if i=m then "" else ", " endif | i in rangoCiudades]++
 ["];Ciudad mas lejana=", show_float(0,2,lejana/100)];
