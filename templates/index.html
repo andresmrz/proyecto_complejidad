@@ -1,0 +1,194 @@
+
+<html lang="es" id="html">
+    <head>
+        <title>Proyecto</title>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, user-scalable=1.0, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+        <meta name="description" content="Primero cali valle adelante">
+        <meta name="author" content="AMRZ">
+
+        <link rel="icon" href="{{url_for('static', filename='img/favicon.jpg')}}">
+
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='lb/jquery/jquery-ui.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='lb/bootstrap/css/bootstrap.min.css')}}">
+        <script src="{{url_for('static', filename='lb/jquery/jquery-3.4.1.min.js')}}"></script>
+        <script src="{{url_for('static', filename='lb/bootstrap/js/bootstrap.min.js')}}"></script>
+
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/inicio.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/estilos.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/menu.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/hint/hint.min.css')}}">
+
+        <script type="text/javascript" src="{{url_for('static', filename='js/inicio.js')}}"></script>
+        <script type="text/javascript" src="{{url_for('static', filename='js/function.js')}}"></script>
+        <script type="text/javascript" src="{{url_for('static', filename='js/menu.js')}}"></script>
+        <script type="text/javascript" src="{{url_for('static', filename='lb/cargando/cargando.js')}}"></script>
+        <!--<script type="text/javascript" src="lb/fontAwesome/v5.14.0.js"></script>-->
+        <script src="https://use.fontawesome.com/releases/v5.14.0/js/all.js" data-auto-replace-svg="nest"></script>
+
+    </head>
+    
+    <body>
+
+        <!-- datos --->
+
+        <!-- ----------->
+
+        <div class="contenedor-principal">
+            
+            <div id="particles-js" class="contenedor-principal-fondo"></div>
+
+        <!-- menu -->
+
+            <div class="contenedor-menu">
+                <div class="boton-menu" id="boton-menu">
+                    <a href="javascript:void(0)" class="texto-menu">
+                        <span class="glyphicon glyphicon-align-justify texto-menu-span" style="right: 2%;"></span>
+                        <span class="texto-menu-span"><img src="{{url_for('static', filename='img/favicon.jpg')}}" style="height: 75px"></span>
+                    </a>
+                </div>
+
+                <nav id="contenedor-menu-nav">
+                    <ul class="menu">
+                        <li class="menu-logo"><img src="{{url_for('static', filename='img/favicon.jpg')}}"></li>
+
+                        <!-- sesion -->
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="contenedor-slider" id="contenedor-slider"></div>
+            
+            <div class="contenedor">
+                <!-- contenido -->
+
+                <div class="contenedor-ventanas" id="contenedor-ventanas">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <form action="javascript: insertar_fila('datos-tabla')">
+                                <br>                            
+                                <div class="row">
+                                    <div class="form-group col-sm-4">
+                                        <label><b>Municipio </b><span class="text-danger hint--top hint--primary" data-hint="Campo obligatotio" style="cursor: pointer;">(*)</span></label>
+                                        <input type="text" id="municipio" class="form-control" value="" placeholder="Digite nombre del municipio" minlength="1" maxlength="30" autocomplete="off" required>
+                                    </div>
+                            
+                                    <div class="form-group col-sm-4">
+                                        <label><b>Posición Este </b><span class="text-danger hint--top hint--primary" data-hint="Campo obligatotio" style="cursor: pointer;">(*)</span></label>
+                                        <input type="number" id="este" onkeypress="return soloNumeros(event)" class="form-control text-center" value="" placeholder="Digite la posición al este" min="0" max="10" autocomplete="off" required>
+                                    </div>
+
+                                    <div class="form-group col-sm-4">
+                                        <label><b>Posición Norte </b><span class="text-danger hint--top hint--primary" data-hint="Campo obligatotio" style="cursor: pointer;">(*)</span></label>
+                                        <input type="number" id="norte" onkeypress="return soloNumeros(event)" class="form-control text-center" value="" placeholder="Digite la posición al norte" min="0" max="10" autocomplete="off" required>
+                                    </div>
+                                </div>
+                                <br>
+                            
+                                <div class="alert alert-success" id="notificacion" style="display: none;">aviso</div>
+                            
+                                <center>
+                                    <button type="reset" class="btn btn-warning" id="boton-reset">
+                                        <span class="glyphicon glyphicon-refresh"></span>&nbsp;&nbsp;Limpiar
+                                    </button>
+                            
+                                    <button class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Agregar datos
+                                    </button>
+                                </center>
+                            </form>
+
+                            <hr>
+                            <button class="btn btn-primary" onclick="generarClick('modelo-file')">
+                                <span class="fas fa-upload"></span>&nbsp;&nbsp;Cargar modelo
+                            </button>
+
+                            <button class="btn btn-primary" onclick="modelo_aleatorio('datos-tabla')">
+                                <span class="glyphicon glyphicon-retweet"></span>&nbsp;&nbsp;Generar modelo aleatorio
+                            </button>
+
+                            <button class="btn btn-success" onclick="crear_file_modelo('datos-tabla')">
+                                <span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Ejecutar modelo
+                            </button>
+
+                            <input type="file" name="modelo-file" id="modelo-file"  accept=".dzn" onchange="cargar_modelo_verificar_file(event, ['dzn'])" style="display: none;">
+                            <input type="text" name="modelo-formato-file" id="modelo-formato-file" value="" style="display: none;">
+                            <hr>
+
+                            <br>
+                            <div class="table-responsive">
+                                <table class="table table-bordered tablas" id="datos-tabla">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" colspan="5">
+                                                <b>POSICIÓN MUNICIPIOS</b>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-center"><b>#</b></th>
+                                            <th class="text-center"><b>MUNICIPIO</b></th>
+                                            <th class="text-center"><b>POSICIÓN ESTE</b></th>
+                                            <th class="text-center"><b>POSICIÓN NORTE</b></th>
+                                            <th class="text-center th-funciones-2"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div id="consola"></div><br><br>
+                                </div>
+                                <div class="col-sm-12" id="plano"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- footer -->
+
+                <div class="footer">
+                    <div class="row">
+                            <p class="footer-parrafo">
+                                &copy; 2022 Andrés M
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- /// modal // -->
+
+            <button type="button" data-toggle="modal" data-target="#subventana" id="boton-subventana" style="display: none;"></button>
+
+            <div id="subventana" class="modal fade" role="dialog">
+                <div class="modal-dialog" id="subventana-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header subventana-titulo" id="contenedor-subventana-titulo">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" id="subventana-titulo">Modal Header</h4>
+                        </div>
+                        <div class="modal-body" id="subventana-contenido"></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" id="boton-salir-subventana">Cerrar</button>
+                        </div>
+                    </div>      
+                </div>
+            </div>
+
+        </div>
+
+        <script type="text/javascript" src="{{url_for('static', filename='lb/jquery/jquery-1.9.1.min.js')}}"></script>
+        <script type="text/javascript" src="{{url_for('static', filename='lb/jquery/jquery-ui.min.js')}}"></script>
+        <!--<script type="text/javascript" src="lb/map/MarkerWithLabel.js"></script>-->
+    
+    </body>
+ </html>
+
+        

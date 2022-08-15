@@ -1,0 +1,17 @@
+
+.paginacion-contenedor-principal
+{
+	position: relative;
+	width: fit-content;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+}
+
+.paginacion-input
+{
+	width: 80px;
+	margin: 0 6px 0 10px;
+	display: initial;
+}
+
