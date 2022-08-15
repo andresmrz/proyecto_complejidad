@@ -56,6 +56,8 @@ function actualizar_plano(id, universidad = [])
 
     if(datosTabla.length > 0)
     {
+        mostrar('plano');
+        
         var min = 0;
         var max = 0;
         var puntos = new Array();
